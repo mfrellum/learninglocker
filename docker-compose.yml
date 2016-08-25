@@ -1,26 +1,29 @@
-web:
-  container_name: learninglocker-web
-  build: .
-  links:
-    - db:mongo
-  environment:
-    APP_URL: 'lrs.localhost'
-    APP_SECRET_KEY: 'CHANGEME12345678'
-    SMTP_SERVER: 'smtp.sendgrid.net'
-    SMTP_PORT: 587
-    SMTP_USER: 'your own'
-    SMTP_PASSWORD: 'your own'
-    EMAIL_FROM_NAME: 'Learning Locker LRS Docker Container'
-    EMAIL_FROM_ADDRESS: 'learninglocker@lrs.localhost'
-  ports:
-    - "80:80"
-db:
-  container_name: learninglocker-db
-  image: tutum/mongodb:3.2
-  environment:
-    MONGODB_DATABASE: 'learninglocker'
-    MONGODB_USER: 'learninglocker'
-    MONGODB_PASS: 'learninglocker'
-  ports:
-    - "27017:27017"
-    - "28017:28017"
+version: '2'
+services:
+
+  web:
+    container_name: learninglocker-web
+    build: .
+    links:
+      - db:mongo
+    environment:
+      APP_URL: 'lrs.localhost'
+      APP_SECRET_KEY: 'CHANGEME12345678'
+      SMTP_SERVER: 'smtp.sendgrid.net'
+      SMTP_PORT: 587
+      SMTP_USER: 'your own'
+      SMTP_PASSWORD: 'your own'
+      EMAIL_FROM_NAME: 'Learning Locker LRS Docker Container'
+      EMAIL_FROM_ADDRESS: 'learninglocker@lrs.localhost'
+    ports:
+      - "80:80"
+  db:
+    container_name: learninglocker-db
+    image: tutum/mongodb:3.2
+    environment:
+      MONGODB_DATABASE: 'learninglocker'
+      MONGODB_USER: 'learninglocker'
+      MONGODB_PASS: 'learninglocker'
+    ports:
+      - "27017:27017"
+      - "28017:28017"

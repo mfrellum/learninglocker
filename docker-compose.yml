@@ -2,12 +2,13 @@ version: '2'
 services:
 
   web:
-    container_name: learninglocker-web
+    image: mfrellum/learninglocker:1.14.0-http
     build: .
     links:
       - db:mongo
     environment:
-      APP_URL: 'lrs.localhost'
+      LEARNINGLOCKER_DB_HOST: 'mongo:27017' # Have to set this for now because of change to version 2 of docker-compose file
+      APP_URL: 'lrs.dockerhost' # Map in /etc/hosts on docker-host
       APP_SECRET_KEY: 'CHANGEME12345678'
       SMTP_SERVER: 'smtp.sendgrid.net'
       SMTP_PORT: 587
@@ -16,9 +17,8 @@ services:
       EMAIL_FROM_NAME: 'Learning Locker LRS Docker Container'
       EMAIL_FROM_ADDRESS: 'learninglocker@lrs.localhost'
     ports:
-      - "80:80"
+      - "9980:80"
   db:
-    container_name: learninglocker-db
     image: tutum/mongodb:3.2
     environment:
       MONGODB_DATABASE: 'learninglocker'

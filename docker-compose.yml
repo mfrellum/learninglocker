@@ -2,7 +2,7 @@ version: '2'
 services:
 
   web:
-    image: mfrellum/learninglocker:1.14.0-http
+    image: mfrellum/learninglocker:v2.0.7-http
     build: .
     links:
       - db:mongo

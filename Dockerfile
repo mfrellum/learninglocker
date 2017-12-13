@@ -58,7 +58,7 @@ RUN { \
 # Download and install Learning Locker
 # Upstream tarballs include ./learninglocker-v1.14.0/ so this gives us /var/www/html
 RUN mkdir -p /var/www/html
-RUN curl -o learninglocker.tar.gz -SL https://github.com/LearningLocker/learninglocker/archive/v1.14.0.tar.gz \
+RUN curl -o learninglocker.tar.gz -SL https://github.com/LearningLocker/learninglocker/archive/v2.0.7.tar.gz \
 	&& tar -xzf learninglocker.tar.gz -C /var/www/html --strip-components=1 \
 	&& rm learninglocker.tar.gz \
 	&& chown -R www-data:www-data /var/www/html
